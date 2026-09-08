@@ -3,19 +3,16 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Grupo de Investigación en Biotecnología y Biomateriales | FCA - UNC</title>
+    <title>Biotecnología y Biomateriales | FCA - UNC</title>
     <style>
         :root {
             --primary: #0056b3;
-            --primary-dark: #004085;
             --secondary: #28a745;
-            --dark: #2c3e50;
+            --dark: #333;
             --light: #f8f9fa;
-            --card-bg: #ffffff;
-            --border-color: #e9ecef;
         }
         body {
-            font-family: 'Segoe UI', -apple-system, BlinkMacSystemFont, Roboto, Helvetica, Arial, sans-serif;
+            font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
             line-height: 1.6;
             margin: 0;
             padding: 0;
@@ -23,47 +20,49 @@
             background-color: var(--light);
         }
         header {
-            background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+            position: relative;
+            background-color: var(--primary);
             color: white;
             padding: 2.5rem 1rem;
             text-align: center;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+            overflow: hidden;
         }
-        header h1 { 
-            margin: 0; 
-            font-size: 2.3rem; 
-            letter-spacing: -0.5px;
+        #mycelium-canvas {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: auto;
+            cursor: pointer;
+            opacity: 0.45;
         }
-        header p { 
-            font-size: 1.15rem; 
-            margin-top: 0.5rem;
-            opacity: 0.95; 
+        .header-content {
+            position: relative;
+            z-index: 2;
+            pointer-events: none;
         }
+        header h1 { margin: 0; font-size: 2.5rem; }
+        header p { font-size: 1.2rem; opacity: 0.9; margin: 0.5rem 0 0 0; }
         .container {
             max-width: 900px;
             margin: 0 auto;
             padding: 2rem 1rem;
         }
         .card {
-            background: var(--card-bg);
+            background: white;
             border-radius: 8px;
-            padding: 1.75rem;
+            padding: 1.5rem;
             margin-bottom: 2rem;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.06);
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
             border-left: 5px solid var(--primary);
         }
-        .card.highlight { 
-            border-left-color: var(--secondary); 
-        }
-        h2 { 
-            color: var(--primary); 
-            margin-top: 0;
-            font-size: 1.5rem;
-        }
+        .card.highlight { border-left-color: var(--secondary); }
+        h2 { color: var(--primary); margin-top: 0; }
         .question-title {
-            font-size: 1.25rem;
+            font-size: 1.3rem;
             color: var(--dark);
-            font-weight: 600;
+            font-weight: bold;
             margin-bottom: 0.5rem;
         }
         .btn {
@@ -73,55 +72,43 @@
             padding: 0.6rem 1.2rem;
             text-decoration: none;
             border-radius: 5px;
-            font-weight: 600;
+            font-weight: bold;
             margin-top: 1rem;
-            transition: background 0.2s ease-in-out;
+            transition: background 0.3s;
         }
-        .btn:hover { 
-            background: var(--primary-dark); 
-        }
+        .btn:hover { background: #004494; }
         .tags {
             font-size: 0.85rem;
-            color: #555;
-            background: #eef2f7;
-            padding: 0.25rem 0.6rem;
-            border-radius: 4px;
+            color: #666;
+            background: #eee;
+            padding: 0.2rem 0.5rem;
+            border-radius: 3px;
             display: inline-block;
-            margin-bottom: 0.8rem;
-            font-weight: 500;
+            margin-bottom: 1rem;
         }
         hr {
             border: 0;
             height: 1px;
-            background: var(--border-color);
+            background: #e0e0e0;
             margin: 1.5rem 0;
-        }
-        .team-list {
-            list-style-type: none;
-            padding-left: 0;
-        }
-        .team-list li {
-            padding: 0.6rem 0;
-            border-bottom: 1px solid var(--border-color);
-        }
-        .team-list li:last-child {
-            border-bottom: none;
         }
         footer {
             text-align: center;
-            padding: 2rem 1rem;
-            background: #1e293b;
-            color: #cbd5e1;
+            padding: 2rem;
+            background: var(--dark);
+            color: white;
             font-size: 0.9rem;
-            line-height: 1.5;
         }
     </style>
 </head>
 <body>
 
 <header>
-    <h1>Biotecnología y Biomateriales</h1>
-    <p>Facultad de Ciencias Agropecuarias | CIQUIBIC — CONICET | Universidad Nacional de Córdoba</p>
+    <canvas id="mycelium-canvas"></canvas>
+    <div class="header-content">
+        <h1>Biotecnología y Biomateriales</h1>
+        <p>Facultad de Ciencias Agropecuarias | CIQUIBIC — CONICET | UNC</p>
+    </div>
 </header>
 
 <div class="container">
@@ -129,62 +116,151 @@
     <!-- INTRODUCCIÓN -->
     <div class="card">
         <h2>¿Qué hacemos?</h2>
-        <p>Investigamos hongos nativos y otras fuentes biológicas para el aislamiento de compuestos bioactivos y el diseño de biomateriales aplicados. Vinculamos el cultivo y escalado biotecnológico en laboratorio con soluciones concretas para la sustentabilidad agroalimentaria y la protección de cultivos.</p>
+        <p>Estudiamos hongos y otras fuentes biológicas para obtener compuestos bioactivos y materiales activos. Llevamos la ciencia desde el cultivo en el laboratorio hasta su aplicación real en la industria agroalimentaria y de materiales.</p>
     </div>
 
     <!-- ÚLTIMO PAPER -->
     <div class="card highlight">
         <h2>Última Publicación</h2>
         <div class="question-title">¿Es posible reemplazar los antioxidantes sintéticos en nuestros alimentos?</div>
-        <p>La oxidación deteriora los alimentos ricos en lípidos, mientras que alternativas sintéticas como el BHT presentan crecientes cuestionamientos regulatorios. Nuestro trabajo evalúa cómo extractos de los hongos <em>Ganoderma resinaceum</em> y <em>Phlebopus bruchii</em> actúan como antioxidantes naturales eficientes para prolongar la vida útil de matrices lipídicas como la pasta de maní alto oleico.</p>
+        <p>La oxidación arruina los alimentos con alto contenido graso, pero los antioxidantes sintéticos como el BHT presentan riesgos. Nuestro último trabajo explora cómo los extractos de los hongos <em>Ganoderma resinaceum</em> y <em>Phlebopus bruchii</em> pueden actuar como antioxidantes naturales para mejorar la vida útil de la pasta de maní alto oleico.</p>
         <a href="https://chemrxiv.org/doi/abs/10.26434/chemrxiv.15007206/v1" target="_blank" class="btn">Leer el Manuscrito (ChemRxiv)</a>
     </div>
 
     <!-- POSTERS Y CONGRESOS -->
     <div class="card">
-        <h2>Líneas de Investigación y Resultados Recientes</h2>
+        <h2>¿Qué estamos descubriendo? (Nuestros Posters)</h2>
         
-        <div class="question-title">¿Cómo evaluamos el crecimiento micelial de forma no destructiva?</div>
+        <div class="question-title">¿Cómo controlamos el crecimiento de los hongos sin destruir la muestra?</div>
         <div class="tags">II Congreso Internacional de Biotecnología (2026)</div>
-        <p>La morfología micelial influye críticamente en la transferencia de oxígeno en biorreactores. Desarrollamos un protocolo de monitoreo rápido en mesada combinando microscopía y espectrofotometría para cuantificar la biomasa de <em>Phlebopus bruchii</em> sin destruir el cultivo.</p>
+        <p>La forma en que crece el micelio afecta la transferencia de oxígeno en los biorreactores. Presentamos un protocolo de pre-examinación rápida en mesada mediante microscopía de campo claro y espectrofotometría para evaluar la biomasa de <em>Phlebopus bruchii</em> de forma no destructiva.</p>
         <hr>
 
-        <div class="question-title">¿Pueden los metabolitos fúngicos proteger nuestros cultivos?</div>
-        <div class="tags">Jornadas FCA-UNC (2025) & Congresos Internacionales (2025)</div>
-        <p>Estudiamos extractos y caldos de fermentación de <em>P. bruchii</em> como alternativas biológicas a fungicidas sintéticos, demostrando actividad antifúngica frente a <em>Drechslera teres</em> (cebada), <em>Rhizoctonia spp.</em> y <em>Fusarium verticillioides</em>.</p>
+        <div class="question-title">¿Pueden los hongos proteger nuestros cultivos?</div>
+        <div class="tags">Jornadas FCA-UNC (2025) & Congreso Internacional (2025)</div>
+        <p>Evaluamos extractos de <em>P. bruchii</em> como alternativa a los fungicidas sintéticos. Descubrimos que su extracto etanólico tiene un marcado efecto fungicida frente al fitopatógeno <em>Drechslera teres</em> (que afecta a la cebada). También probamos su eficacia contra <em>Rhizoctonia spp.</em>, donde los metabolitos extracelulares del medio agotado lograron inhibir al patógeno.</p>
         <hr>
 
-        <div class="question-title">¿Conservantes naturales a partir de hongos nativos?</div>
+        <div class="question-title">¿Un conservante natural a partir de hongos nativos?</div>
         <div class="tags">CONASA (2025)</div>
-        <p>Evaluamos fracciones antioxidantes del hongo serrano <em>P. bruchii</em> para retrasar la oxidación en aceites comestibles, alcanzando niveles de preservación equiparables al BHT sin alterar las propiedades organolépticas.</p>
+        <p>Analizamos el hongo serrano <em>P. bruchii</em> para retrasar el deterioro de aceites. El extracto etanólico logró proteger el aceite de girasol de la oxidación a niveles comparables al BHT, sin alterar el aroma del alimento.</p>
     </div>
 
     <!-- PREMIOS -->
     <div class="card highlight">
         <h2>De la ciencia a la innovación</h2>
         <div class="question-title">Primer Premio INNOVA UNC (2026)</div>
-        <p>Distinción otorgada al proyecto <strong>“NanoLiFe”</strong>, enfocado en la síntesis sustentable de materiales nanoestructurados (LiFePO4) para baterías de litio empleando ensamblados de proteínas amiloideas de lactosuero.</p>
+        <p>Galardonados por el proyecto <strong>“NanoLiFe”</strong>. Estamos desarrollando una síntesis ecológica de materiales nanoestructurados (LiFePO4) para baterías de litio utilizando proteínas amiloideas provenientes del lactosuero.</p>
     </div>
 
     <!-- EQUIPO Y CONTACTO -->
     <div class="card">
         <h2>El Equipo</h2>
-        <ul class="team-list">
-            <li><strong>Dra. María Elisa Mariani</strong> — Directora de Línea de Investigación | Investigadora CONICET, FCA - UNC.</li>
-            <li><strong>Dr. Gerardo Fidelio</strong> — Investigador Superior CONICET, CIQUIBIC.</li>
-            <li><strong>Dr. Pablo E. A. Rodríguez</strong> — Investigador Superior, Min. de Producción, Ciencia e Innovación Tecnológica (Cba).</li>
-            <li><strong>Lic. Santiago Vega</strong> — Lic. en Biotecnología, Investigador / Colaborador.</li>
+        <ul>
+            <li><strong>María Elisa Mariani</strong> — Investigadora CONICET, FCA - UNC (Directora de línea).</li>
+            <li><strong>Gerardo Fidelio</strong> — Investigador Superior CONICET, CIQUIBIC.</li>
+            <li><strong>Pablo E. A. Rodríguez</strong> — Investigador Superior, Min. de Producción, Ciencia e Innovación Tecnológica (Cba).</li>
+            <li><strong>Santiago Vega</strong> — Lic. en Biotecnología, colaborador.</li>
         </ul>
-        <p>¿Te interesa conocer más sobre nuestras líneas, proponer colaboraciones académicas o solicitar servicios?</p>
+        <p>¿Te interesa conocer más, proponer colaboraciones o solicitar servicios?</p>
         <a href="mailto:emariani@unc.edu.ar" class="btn">Contactar al equipo</a>
     </div>
 
 </div>
 
 <footer>
-    Grupo de Investigación en Biotecnología y Biomateriales<br>
+    Grupo de investigación en Biotecnología y Biomateriales<br>
     Facultad de Ciencias Agropecuarias, Universidad Nacional de Córdoba.
 </footer>
+
+<script>
+    const canvas = document.getElementById('mycelium-canvas');
+    const ctx = canvas.getContext('2d');
+    let width, height;
+    let hyphae = [];
+
+    function resize() {
+        width = canvas.width = canvas.offsetWidth;
+        height = canvas.height = canvas.offsetHeight;
+    }
+    window.addEventListener('resize', resize);
+    resize();
+
+    class Hypha {
+        constructor(x, y, angle, speed, gen, maxLen) {
+            this.x = x;
+            this.y = y;
+            this.angle = angle;
+            this.speed = speed;
+            this.gen = gen;
+            this.len = 0;
+            this.maxLen = maxLen || (Math.random() * 90 + 50) / (gen * 0.6 + 1);
+            this.alive = true;
+            this.width = Math.max(0.6, 2.2 - gen * 0.4);
+        }
+        update() {
+            if (!this.alive) return;
+            const prevX = this.x;
+            const prevY = this.y;
+            this.angle += (Math.random() - 0.5) * 0.35;
+            this.x += Math.cos(this.angle) * this.speed;
+            this.y += Math.sin(this.angle) * this.speed;
+            this.len += this.speed;
+
+            ctx.strokeStyle = `rgba(255, 255, 255, ${0.85 / (this.gen * 0.5 + 1)})`;
+            ctx.lineWidth = this.width;
+            ctx.beginPath();
+            ctx.moveTo(prevX, prevY);
+            ctx.lineTo(this.x, this.y);
+            ctx.stroke();
+
+            // Ramificación lateral del micelio
+            if (this.gen < 4 && Math.random() < 0.04 && this.len > 15) {
+                const branchAngle = this.angle + (Math.random() < 0.5 ? 1 : -1) * (0.4 + Math.random() * 0.4);
+                hyphae.push(new Hypha(this.x, this.y, branchAngle, this.speed * 0.95, this.gen + 1));
+            }
+
+            if (this.len >= this.maxLen || this.x < 0 || this.x > width || this.y < 0 || this.y > height) {
+                this.alive = false;
+            }
+        }
+    }
+
+    function spawnSpore(x, y) {
+        const startX = x !== undefined ? x : Math.random() * width;
+        const startY = y !== undefined ? y : Math.random() * height;
+        const tips = Math.floor(Math.random() * 3) + 3;
+        for (let i = 0; i < tips; i++) {
+            const angle = (Math.PI * 2 / tips) * i + (Math.random() - 0.5) * 0.6;
+            hyphae.push(new Hypha(startX, startY, angle, 1.2 + Math.random() * 0.8, 0));
+        }
+    }
+
+    for (let i = 0; i < 4; i++) spawnSpore();
+
+    let count = 0;
+    function animate() {
+        count++;
+        // Desvanecimiento suave para mantener el micelio sin tapar el fondo
+        if (count % 3 === 0) {
+            ctx.fillStyle = 'rgba(0, 86, 179, 0.02)';
+            ctx.fillRect(0, 0, width, height);
+        }
+        hyphae = hyphae.filter(h => h.alive);
+        hyphae.forEach(h => h.update());
+
+        if (hyphae.length < 6 && Math.random() < 0.05) {
+            spawnSpore();
+        }
+        requestAnimationFrame(animate);
+    }
+    animate();
+
+    canvas.addEventListener('click', (e) => {
+        const rect = canvas.getBoundingClientRect();
+        spawnSpore(e.clientX - rect.left, e.clientY - rect.top);
+    });
+</script>
 
 </body>
 </html>
