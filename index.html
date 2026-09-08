@@ -4,111 +4,214 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Biotecnología y Biomateriales | FCA - UNC</title>
+    
+    <!-- Fuentes editoriales -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+    
     <style>
         :root {
-            --primary: #0056b3;
-            --secondary: #28a745;
-            --dark: #333;
-            --light: #f8f9fa;
+            --paper: #EAE6DB;
+            --paper-deep: #DFDACB;
+            --ink: #211E19;
+            --ink-soft: #57534A;
+            --moss: #47563A;
+            --rust: #8C5A2B;
+            --teal: #2E6259;
+            --line: #C9C2AF;
+
+            /* Mapeo para tus tarjetas y componentes */
+            --primary: var(--moss);
+            --secondary: var(--rust);
+            --dark: var(--ink);
+            --light: var(--paper);
         }
+
+        * { box-sizing: border-box; }
+
         body {
-            font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+            font-family: 'Inter', system-ui, -apple-system, sans-serif;
             line-height: 1.6;
             margin: 0;
             padding: 0;
             color: var(--dark);
             background-color: var(--light);
+            -webkit-font-smoothing: antialiased;
         }
+
         header {
-            position: relative;
             background-color: var(--primary);
-            color: white;
-            padding: 2.5rem 1rem;
+            color: var(--paper);
+            padding: 2.5rem 1rem 2rem;
             text-align: center;
-            overflow: hidden;
         }
-        #mycelium-canvas {
-            position: absolute;
-            top: 0;
-            left: 0;
+
+        header h1 { 
+            margin: 0; 
+            font-family: 'Fraunces', Georgia, serif;
+            font-size: clamp(2rem, 4vw, 2.6rem);
+            font-weight: 500;
+            letter-spacing: -0.01em;
+            color: var(--paper);
+        }
+
+        header p { 
+            font-size: 1.15rem; 
+            opacity: 0.9; 
+            margin: 0.5rem 0 0; 
+            color: var(--paper-deep);
+        }
+
+        /* Animación SVG del micelio */
+        .myco {
+            display: block;
+            margin: 1.5rem auto 0;
             width: 100%;
-            height: 100%;
-            pointer-events: auto;
-            cursor: pointer;
-            opacity: 0.45;
+            max-width: 220px;
+            height: auto;
         }
-        .header-content {
-            position: relative;
-            z-index: 2;
-            pointer-events: none;
+
+        .myco path {
+            fill: none;
+            stroke: var(--paper-deep);
+            stroke-width: 1.8;
+            stroke-linecap: round;
+            stroke-dasharray: 1;
+            stroke-dashoffset: 0;
         }
-        header h1 { margin: 0; font-size: 2.5rem; }
-        header p { font-size: 1.2rem; opacity: 0.9; margin: 0.5rem 0 0 0; }
+
+        .myco circle {
+            fill: var(--rust);
+        }
+
+        @media (prefers-reduced-motion: no-preference) {
+            .myco path { animation: grow 2.4s ease-out forwards; }
+            .myco circle { opacity: 0; animation: appear 0.6s ease-out 2.1s forwards; }
+        }
+
+        @keyframes grow {
+            from { stroke-dashoffset: var(--len, 1); stroke-dasharray: var(--len, 1); }
+            to { stroke-dashoffset: 0; stroke-dasharray: var(--len, 1); }
+        }
+
+        @keyframes appear { 
+            to { opacity: 1; } 
+        }
+
         .container {
-            max-width: 900px;
+            max-width: 860px;
             margin: 0 auto;
-            padding: 2rem 1rem;
+            padding: 2.5rem 1rem;
         }
+
         .card {
             background: white;
             border-radius: 8px;
-            padding: 1.5rem;
+            padding: 1.75rem;
             margin-bottom: 2rem;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            box-shadow: 0 4px 10px rgba(33, 30, 25, 0.05);
+            border: 1px solid var(--line);
             border-left: 5px solid var(--primary);
         }
-        .card.highlight { border-left-color: var(--secondary); }
-        h2 { color: var(--primary); margin-top: 0; }
+
+        .card.highlight { 
+            border-left-color: var(--secondary); 
+            background: #fcfbf9;
+        }
+
+        h2 { 
+            color: var(--primary); 
+            font-family: 'Fraunces', Georgia, serif;
+            font-size: 1.45rem;
+            font-weight: 500;
+            margin-top: 0; 
+        }
+
         .question-title {
-            font-size: 1.3rem;
+            font-size: 1.2rem;
             color: var(--dark);
-            font-weight: bold;
+            font-weight: 600;
             margin-bottom: 0.5rem;
         }
+
         .btn {
             display: inline-block;
             background: var(--primary);
-            color: white;
-            padding: 0.6rem 1.2rem;
+            color: var(--paper);
+            padding: 0.65rem 1.3rem;
             text-decoration: none;
             border-radius: 5px;
-            font-weight: bold;
+            font-weight: 500;
             margin-top: 1rem;
-            transition: background 0.3s;
+            transition: background 0.25s ease;
         }
-        .btn:hover { background: #004494; }
+
+        .btn:hover { 
+            background: #35412b; 
+        }
+
         .tags {
             font-size: 0.85rem;
-            color: #666;
-            background: #eee;
-            padding: 0.2rem 0.5rem;
+            color: var(--ink-soft);
+            background: var(--paper-deep);
+            padding: 0.2rem 0.6rem;
             border-radius: 3px;
             display: inline-block;
-            margin-bottom: 1rem;
+            margin-bottom: 0.8rem;
+            font-weight: 500;
         }
+
         hr {
             border: 0;
             height: 1px;
-            background: #e0e0e0;
+            background: var(--line);
             margin: 1.5rem 0;
         }
+
+        ul {
+            padding-left: 1.2rem;
+        }
+
+        li {
+            margin-bottom: 0.5rem;
+        }
+
         footer {
             text-align: center;
-            padding: 2rem;
+            padding: 2.5rem 1rem;
             background: var(--dark);
-            color: white;
+            color: var(--paper-deep);
             font-size: 0.9rem;
+            line-height: 1.5;
         }
     </style>
 </head>
 <body>
 
 <header>
-    <canvas id="mycelium-canvas"></canvas>
-    <div class="header-content">
-        <h1>Biotecnología y Biomateriales</h1>
-        <p>Facultad de Ciencias Agropecuarias | CIQUIBIC — CONICET | UNC</p>
-    </div>
+    <h1>Biotecnología y Biomateriales</h1>
+    <p>Facultad de Ciencias Agropecuarias | CIQUIBIC — CONICET | UNC</p>
+
+    <!-- Animación del micelio -->
+    <svg class="myco" viewBox="0 0 260 220" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+        <path d="M130 210 C126 180 132 160 128 140" style="--len:75"/>
+        <path d="M128 140 C110 128 96 120 80 118" style="--len:64"/>
+        <path d="M128 140 C146 126 158 116 176 110" style="--len:68"/>
+        <path d="M80 118 C64 112 52 108 36 108" style="--len:46"/>
+        <path d="M80 118 C72 100 66 88 60 72" style="--len:52"/>
+        <path d="M176 110 C190 100 200 92 210 78" style="--len:44"/>
+        <path d="M176 110 C182 128 190 138 202 148" style="--len:48"/>
+        <path d="M128 140 C124 122 118 108 106 96" style="--len:56"/>
+        <path d="M106 96 C98 84 92 76 82 66" style="--len:36"/>
+        <path d="M106 96 C116 82 122 72 122 56" style="--len:44"/>
+        <circle cx="36" cy="108" r="3"/>
+        <circle cx="60" cy="72" r="3"/>
+        <circle cx="210" cy="78" r="3"/>
+        <circle cx="202" cy="148" r="3"/>
+        <circle cx="82" cy="66" r="3"/>
+        <circle cx="122" cy="56" r="3"/>
+    </svg>
 </header>
 
 <div class="container">
@@ -163,7 +266,10 @@
             <li><strong>Santiago Vega</strong> — Lic. en Biotecnología, colaborador.</li>
         </ul>
         <p>¿Te interesa conocer más, proponer colaboraciones o solicitar servicios?</p>
-        <a href="mailto:emariani@unc.edu.ar" class="btn">Contactar al equipo</a>
+        <!-- Enlace mailto corregido con asunto automático -->
+        <a href="mailto:emariani@unc.edu.ar?subject=Contacto%20-%20Biotecnolog%C3%ADa%20y%20Biomateriales" class="btn">
+            Contacto: emariani@unc.edu.ar
+        </a>
     </div>
 
 </div>
@@ -172,95 +278,6 @@
     Grupo de investigación en Biotecnología y Biomateriales<br>
     Facultad de Ciencias Agropecuarias, Universidad Nacional de Córdoba.
 </footer>
-
-<script>
-    const canvas = document.getElementById('mycelium-canvas');
-    const ctx = canvas.getContext('2d');
-    let width, height;
-    let hyphae = [];
-
-    function resize() {
-        width = canvas.width = canvas.offsetWidth;
-        height = canvas.height = canvas.offsetHeight;
-    }
-    window.addEventListener('resize', resize);
-    resize();
-
-    class Hypha {
-        constructor(x, y, angle, speed, gen, maxLen) {
-            this.x = x;
-            this.y = y;
-            this.angle = angle;
-            this.speed = speed;
-            this.gen = gen;
-            this.len = 0;
-            this.maxLen = maxLen || (Math.random() * 90 + 50) / (gen * 0.6 + 1);
-            this.alive = true;
-            this.width = Math.max(0.6, 2.2 - gen * 0.4);
-        }
-        update() {
-            if (!this.alive) return;
-            const prevX = this.x;
-            const prevY = this.y;
-            this.angle += (Math.random() - 0.5) * 0.35;
-            this.x += Math.cos(this.angle) * this.speed;
-            this.y += Math.sin(this.angle) * this.speed;
-            this.len += this.speed;
-
-            ctx.strokeStyle = `rgba(255, 255, 255, ${0.85 / (this.gen * 0.5 + 1)})`;
-            ctx.lineWidth = this.width;
-            ctx.beginPath();
-            ctx.moveTo(prevX, prevY);
-            ctx.lineTo(this.x, this.y);
-            ctx.stroke();
-
-            // Ramificación lateral del micelio
-            if (this.gen < 4 && Math.random() < 0.04 && this.len > 15) {
-                const branchAngle = this.angle + (Math.random() < 0.5 ? 1 : -1) * (0.4 + Math.random() * 0.4);
-                hyphae.push(new Hypha(this.x, this.y, branchAngle, this.speed * 0.95, this.gen + 1));
-            }
-
-            if (this.len >= this.maxLen || this.x < 0 || this.x > width || this.y < 0 || this.y > height) {
-                this.alive = false;
-            }
-        }
-    }
-
-    function spawnSpore(x, y) {
-        const startX = x !== undefined ? x : Math.random() * width;
-        const startY = y !== undefined ? y : Math.random() * height;
-        const tips = Math.floor(Math.random() * 3) + 3;
-        for (let i = 0; i < tips; i++) {
-            const angle = (Math.PI * 2 / tips) * i + (Math.random() - 0.5) * 0.6;
-            hyphae.push(new Hypha(startX, startY, angle, 1.2 + Math.random() * 0.8, 0));
-        }
-    }
-
-    for (let i = 0; i < 4; i++) spawnSpore();
-
-    let count = 0;
-    function animate() {
-        count++;
-        // Desvanecimiento suave para mantener el micelio sin tapar el fondo
-        if (count % 3 === 0) {
-            ctx.fillStyle = 'rgba(0, 86, 179, 0.02)';
-            ctx.fillRect(0, 0, width, height);
-        }
-        hyphae = hyphae.filter(h => h.alive);
-        hyphae.forEach(h => h.update());
-
-        if (hyphae.length < 6 && Math.random() < 0.05) {
-            spawnSpore();
-        }
-        requestAnimationFrame(animate);
-    }
-    animate();
-
-    canvas.addEventListener('click', (e) => {
-        const rect = canvas.getBoundingClientRect();
-        spawnSpore(e.clientX - rect.left, e.clientY - rect.top);
-    });
-</script>
 
 </body>
 </html>
