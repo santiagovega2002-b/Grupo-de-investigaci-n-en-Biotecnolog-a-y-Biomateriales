@@ -1,333 +1,150 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Biotecnología y Biomateriales — CeTBIO</title>
-<meta name="description" content="Grupo de investigación en Biotecnología y Biomateriales, Centro de Transferencia de Bioinsumos (CeTBIO), Facultad de Ciencias Químicas, UNC.">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
-<style>
-  :root{
-    --paper:#EAE6DB;
-    --paper-deep:#DFDACB;
-    --ink:#211E19;
-    --ink-soft:#57534A;
-    --moss:#47563A;
-    --rust:#8C5A2B;
-    --teal:#2E6259;
-    --line:#C9C2AF;
-    --max:780px;
-  }
-  *{box-sizing:border-box;}
-  html{scroll-behavior:smooth;}
-  body{
-    margin:0;
-    background:var(--paper);
-    color:var(--ink);
-    font-family:'Inter',system-ui,sans-serif;
-    font-size:17px;
-    line-height:1.6;
-    -webkit-font-smoothing:antialiased;
-  }
-  h1,h2,h3{
-    font-family:'Fraunces',serif;
-    font-weight:500;
-    letter-spacing:-0.01em;
-    margin:0;
-  }
-  a{color:var(--teal);}
-  a:focus-visible, button:focus-visible{outline:2px solid var(--teal); outline-offset:3px;}
-  .wrap{max-width:var(--max); margin:0 auto; padding:0 28px;}
-
-  /* header */
-  header{
-    padding:26px 0 0;
-  }
-  .brandline{
-    max-width:var(--max); margin:0 auto; padding:0 28px;
-    display:flex; justify-content:space-between; align-items:baseline;
-    font-size:14px; color:var(--ink-soft);
-  }
-  .brandline strong{color:var(--ink); font-weight:600;}
-
-  /* hero */
-  .hero{
-    max-width:960px; margin:0 auto; padding:64px 28px 20px;
-    display:grid; grid-template-columns:1.15fr 0.85fr; gap:36px; align-items:center;
-  }
-  .hero h1{
-    font-size:clamp(2.1rem, 4.4vw, 3.1rem);
-    line-height:1.1;
-  }
-  .hero .sub{
-    margin-top:18px;
-    color:var(--ink-soft);
-    font-size:1.05rem;
-    max-width:46ch;
-  }
-  .hero .affil{
-    margin-top:26px;
-    font-size:14px;
-    color:var(--ink-soft);
-    border-top:1px solid var(--line);
-    padding-top:16px;
-    display:flex; flex-wrap:wrap; gap:6px 18px;
-  }
-  .myco{
-    width:100%;
-    height:auto;
-  }
-  .myco path{
-    fill:none;
-    stroke:var(--moss);
-    stroke-width:1.6;
-    stroke-linecap:round;
-    stroke-dasharray:1;
-    stroke-dashoffset:0;
-  }
-  .myco circle{
-    fill:var(--rust);
-  }
-  @media (prefers-reduced-motion: no-preference){
-    .myco path{
-      animation:grow 2.4s ease-out forwards;
-    }
-    .myco circle{
-      opacity:0;
-      animation:appear 0.6s ease-out 2.1s forwards;
-    }
-  }
-  @keyframes grow{
-    from{ stroke-dashoffset: var(--len, 1); stroke-dasharray: var(--len, 1); }
-    to{ stroke-dashoffset: 0; stroke-dasharray: var(--len, 1); }
-  }
-  @keyframes appear{ to{ opacity:1; } }
-
-  /* sections */
-  section{
-    padding:52px 0;
-    border-top:1px solid var(--line);
-  }
-  section .wrap > h2{
-    font-size:1.5rem;
-    margin-bottom:8px;
-  }
-  section .lede{
-    color:var(--ink-soft);
-    max-width:56ch;
-    margin-bottom:32px;
-  }
-
-  .lines-grid{
-    display:grid;
-    grid-template-columns:1fr 1fr;
-    gap:0;
-    border:1px solid var(--line);
-  }
-  .line-item{
-    padding:24px 26px;
-    border-right:1px solid var(--line);
-    border-bottom:1px solid var(--line);
-  }
-  .line-item:nth-child(2n){ border-right:none; }
-  .line-item:nth-last-child(-n+2){ border-bottom:none; }
-  .line-item h3{
-    font-size:1.05rem;
-    font-weight:500;
-    margin-bottom:8px;
-    color:var(--moss);
-  }
-  .line-item p{ margin:0; color:var(--ink-soft); font-size:0.97rem; }
-
-  .team{
-    display:grid;
-    grid-template-columns:repeat(2, 1fr);
-    gap:22px 32px;
-  }
-  .person{
-    padding-top:14px;
-    border-top:2px solid var(--rust);
-  }
-  .person .name{
-    font-family:'Fraunces',serif;
-    font-size:1.08rem;
-  }
-  .person .role{
-    color:var(--ink-soft);
-    font-size:0.92rem;
-    margin-top:3px;
-  }
-
-  .project{
-    display:grid;
-    grid-template-columns:auto 1fr;
-    gap:20px;
-    align-items:start;
-    background:var(--paper-deep);
-    padding:26px;
-    border-left:3px solid var(--teal);
-  }
-  .project .tag{
-    font-size:0.85rem;
-    color:var(--teal);
-    white-space:nowrap;
-    padding-top:4px;
-  }
-  .project h3{
-    font-size:1.1rem;
-    font-weight:500;
-    margin-bottom:8px;
-  }
-  .project p{ color:var(--ink-soft); margin:0; font-size:0.97rem; }
-
-  .contact{
-    display:flex; flex-wrap:wrap; justify-content:space-between; align-items:flex-end; gap:24px;
-  }
-  .contact p{ color:var(--ink-soft); max-width:42ch; margin:10px 0 0; }
-  .contact .cta{
-    font-family:'Fraunces',serif;
-    font-size:1.3rem;
-  }
-  .contact .cta a{
-    color:var(--ink);
-    text-decoration-color:var(--rust);
-    text-decoration-thickness:2px;
-    text-underline-offset:5px;
-  }
-
-  footer{
-    padding:28px 0 40px;
-    color:var(--ink-soft);
-    font-size:13px;
-  }
-
-  @media (max-width:720px){
-    .hero{ grid-template-columns:1fr; padding-top:44px; }
-    .lines-grid{ grid-template-columns:1fr; }
-    .line-item{ border-right:none !important; }
-    .line-item:last-child{ border-bottom:none; }
-    .team{ grid-template-columns:1fr; }
-    .project{ grid-template-columns:1fr; }
-  }
-</style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CeTBIO | Biotecnología y Biomateriales</title>
+    <style>
+        :root {
+            --primary: #0056b3;
+            --secondary: #28a745;
+            --dark: #333;
+            --light: #f8f9fa;
+        }
+        body {
+            font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+            line-height: 1.6;
+            margin: 0;
+            padding: 0;
+            color: var(--dark);
+            background-color: var(--light);
+        }
+        header {
+            background-color: var(--primary);
+            color: white;
+            padding: 2rem 1rem;
+            text-align: center;
+        }
+        header h1 { margin: 0; font-size: 2.5rem; }
+        header p { font-size: 1.2rem; opacity: 0.9; }
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 2rem 1rem;
+        }
+        .card {
+            background: white;
+            border-radius: 8px;
+            padding: 1.5rem;
+            margin-bottom: 2rem;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            border-left: 5px solid var(--primary);
+        }
+        .card.highlight { border-left-color: var(--secondary); }
+        h2 { color: var(--primary); margin-top: 0; }
+        .question-title {
+            font-size: 1.3rem;
+            color: var(--dark);
+            font-weight: bold;
+            margin-bottom: 0.5rem;
+        }
+        .btn {
+            display: inline-block;
+            background: var(--primary);
+            color: white;
+            padding: 0.6rem 1.2rem;
+            text-decoration: none;
+            border-radius: 5px;
+            font-weight: bold;
+            margin-top: 1rem;
+            transition: background 0.3s;
+        }
+        .btn:hover { background: #004494; }
+        .tags {
+            font-size: 0.85rem;
+            color: #666;
+            background: #eee;
+            padding: 0.2rem 0.5rem;
+            border-radius: 3px;
+            display: inline-block;
+            margin-bottom: 1rem;
+        }
+        footer {
+            text-align: center;
+            padding: 2rem;
+            background: var(--dark);
+            color: white;
+            font-size: 0.9rem;
+        }
+    </style>
 </head>
 <body>
 
 <header>
-  <div class="brandline">
-    <span><strong>CeTBIO</strong> · Facultad de Ciencias Químicas, UNC</span>
-    <span>CONICET</span>
-  </div>
+    <h1>Biotecnología y Biomateriales</h1>
+    <p>Centro de Transferencia de Bioinsumos (CeTBIO) | CIQUIBIC — CONICET | UNC</p>
 </header>
 
-<div class="hero wrap" style="padding-left:0; padding-right:0;">
-  <div>
-    <h1>Biotecnología y Biomateriales</h1>
-    <p class="sub">Estudiamos hongos y otras fuentes biológicas para obtener compuestos bioactivos y materiales activos, desde el cultivo en el laboratorio hasta su posible aplicación.</p>
-    <div class="affil">
-      <span>Centro de Transferencia de Bioinsumos (CeTBIO)</span>
-      <span>CIQUIBIC — CONICET</span>
-      <span>UNC</span>
+<div class="container">
+    
+    <!-- INTRODUCCIÓN -->
+    <div class="card">
+        <h2>¿Qué hacemos?</h2>
+        <p>Estudiamos hongos y otras fuentes biológicas para obtener compuestos bioactivos y materiales activos. Llevamos la ciencia desde el cultivo en el laboratorio hasta su aplicación real en la industria agroalimentaria y de materiales.</p>
     </div>
-  </div>
-  <svg class="myco" viewBox="0 0 260 220" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-    <path d="M130 210 C126 180 132 160 128 140" style="--len:75"/>
-    <path d="M128 140 C110 128 96 120 80 118" style="--len:64"/>
-    <path d="M128 140 C146 126 158 116 176 110" style="--len:68"/>
-    <path d="M80 118 C64 112 52 108 36 108" style="--len:46"/>
-    <path d="M80 118 C72 100 66 88 60 72" style="--len:52"/>
-    <path d="M176 110 C190 100 200 92 210 78" style="--len:44"/>
-    <path d="M176 110 C182 128 190 138 202 148" style="--len:48"/>
-    <path d="M128 140 C124 122 118 108 106 96" style="--len:56"/>
-    <path d="M106 96 C98 84 92 76 82 66" style="--len:36"/>
-    <path d="M106 96 C116 82 122 72 122 56" style="--len:44"/>
-    <circle cx="36" cy="108" r="3"/>
-    <circle cx="60" cy="72" r="3"/>
-    <circle cx="210" cy="78" r="3"/>
-    <circle cx="202" cy="148" r="3"/>
-    <circle cx="82" cy="66" r="3"/>
-    <circle cx="122" cy="56" r="3"/>
-  </svg>
+
+    <!-- ÚLTIMO PAPER -->
+    <div class="card highlight">
+        <h2>Última Publicación</h2>
+        <div class="question-title">¿Es posible reemplazar los antioxidantes sintéticos en nuestros alimentos?</div>
+        <p>La oxidación arruina los alimentos con alto contenido graso, pero los antioxidantes sintéticos como el BHT presentan riesgos. Nuestro último trabajo explora cómo los extractos de los hongos <em>Ganoderma resinaceum</em> y <em>Phlebopus bruchii</em> pueden actuar como antioxidantes naturales para mejorar la vida útil de la pasta de maní alto oleico.</p>
+        <a href="https://chemrxiv.org/doi/abs/10.26434/chemrxiv.15007206/v1" target="_blank" class="btn">Leer el Manuscrito (ChemRxiv)</a>
+    </div>
+
+    <!-- POSTERS Y CONGRESOS -->
+    <div class="card">
+        <h2>¿Qué estamos descubriendo? (Nuestros Posters)</h2>
+        
+        <div class="question-title">¿Cómo controlamos el crecimiento de los hongos sin destruir la muestra?</div>
+        <div class="tags">II Congreso Internacional de Biotecnología (2026)</div>
+        <p>La forma en que crece el micelio afecta la transferencia de oxígeno en los biorreactores[cite: 1]. Presentamos un protocolo de pre-examinación rápida en mesada mediante microscopía de campo claro y espectrofotometría para evaluar la biomasa de <em>Phlebopus bruchii</em> de forma no destructiva[cite: 1].</p>
+        <hr>
+
+        <div class="question-title">¿Pueden los hongos proteger nuestros cultivos?</div>
+        <div class="tags">Jornadas FCA-UNC (2025) & Congreso Internacional (2025)</div>
+        <p>Evaluamos extractos de <em>P. bruchii</em> como alternativa a los fungicidas sintéticos. Descubrimos que su extracto etanólico tiene un marcado efecto fungicida frente al fitopatógeno <em>Drechslera teres</em> (que afecta a la cebada)[cite: 2]. También probamos su eficacia contra <em>Rhizoctonia spp.</em>, donde los metabolitos extracelulares del medio agotado lograron inhibir al patógeno[cite: 4].</p>
+        <hr>
+
+        <div class="question-title">¿Un conservante natural a partir de hongos nativos?</div>
+        <div class="tags">CONASA (2025)</div>
+        <p>Analizamos el hongo serrano <em>P. bruchii</em> para retrasar el deterioro de aceites. El extracto etanólico logró proteger el aceite de girasol de la oxidación a niveles comparables al BHT, sin alterar el aroma del alimento[cite: 3].</p>
+    </div>
+
+    <!-- PREMIOS -->
+    <div class="card highlight">
+        <h2>De la ciencia a la innovación</h2>
+        <div class="question-title">Primer Premio INNOVA UNC (2026)</div>
+        <p>Galardonados por el proyecto <strong>“NanoLiFe”</strong>. Estamos desarrollando una síntesis ecológica de materiales nanoestructurados (LiFePO4) para baterías de litio utilizando proteínas amiloideas provenientes del lactosuero.</p>
+    </div>
+
+    <!-- EQUIPO Y CONTACTO -->
+    <div class="card">
+        <h2>El Equipo</h2>
+        <ul>
+            <li><strong>Gerardo Fidelio</strong> — Investigador Superior CONICET, CIQUIBIC.</li>
+            <li><strong>Pablo E. A. Rodríguez</strong> — Investigador Superior, Min. de Producción, Ciencia e Innovación Tecnológica (Cba).</li>
+            <li><strong>María Elisa Mariani</strong> — Investigadora, CeTBIO.</li>
+            <li><strong>Santiago Vega</strong> — Lic. en Biotecnología, colaborador.</li>
+        </ul>
+        <p>¿Te interesa conocer más, proponer colaboraciones o solicitar servicios?</p>
+        <a href="mailto:emariani@unc.edu.ar" class="btn">Contactar al equipo</a>
+    </div>
+
 </div>
 
-<section id="lineas">
-  <div class="wrap">
-    <h2>Líneas de investigación</h2>
-    <p class="lede">Cuatro ejes que van del cultivo a la aplicación.</p>
-    <div class="lines-grid">
-      <div class="line-item">
-        <h3>Producción de biomasa fúngica</h3>
-        <p>Optimización de la biomasa a través de fermentación en estado líquido.</p>
-      </div>
-      <div class="line-item">
-        <h3>Compuestos bioactivos fúngicos</h3>
-        <p>Extracción y estudio de propiedades antioxidantes, antimicrobianas, antifúngicas y prebióticas, entre otras.</p>
-      </div>
-      <div class="line-item">
-        <h3>Nanoformulaciones</h3>
-        <p>Desarrollo de nanoformulaciones que potencien el efecto de los compuestos bioactivos.</p>
-      </div>
-      <div class="line-item">
-        <h3>Biomateriales activos</h3>
-        <p>Desarrollo de biomateriales a partir de fuentes vegetales y fúngicas para distintas aplicaciones.</p>
-      </div>
-    </div>
-  </div>
-</section>
-
-<section id="proyecto">
-  <div class="wrap">
-    <h2>De dónde salió este QR</h2>
-    <p class="lede">&nbsp;</p>
-    <div class="project">
-      <span class="tag">Congreso · en curso</span>
-      <div>
-        <h3>Agregación micelial en Phlebopus bruchii</h3>
-        <p>Estandarización de un protocolo de muestreo no destructivo y pre-examinación morfológica para estudiar cómo se forman los pellets de este hongo en fermentación líquida, usando microscopía DIC y análisis digital de imágenes.</p>
-      </div>
-    </div>
-  </div>
-</section>
-
-<section id="equipo">
-  <div class="wrap">
-    <h2>Equipo</h2>
-    <p class="lede">&nbsp;</p>
-    <div class="team">
-      <div class="person">
-        <div class="name">Gerardo Fidelio</div>
-        <div class="role">Investigador Superior CONICET (contratado), CIQUIBIC</div>
-      </div>
-      <div class="person">
-        <div class="name">Pablo E. A. Rodríguez</div>
-        <div class="role">Investigador Superior, Carrera del Personal Científico y Tecnológico de Córdoba</div>
-      </div>
-      <div class="person">
-        <div class="name">María Elisa Mariani</div>
-        <div class="role">Investigadora, CeTBIO</div>
-      </div>
-      <div class="person">
-        <div class="name">Santiago Vega</div>
-        <div class="role">Lic. en Biotecnología, colaborador</div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<section id="contacto">
-  <div class="wrap contact">
-    <div>
-      <h2>Contacto</h2>
-      <p>Para consultas, propuestas de colaboración o servicios.</p>
-    </div>
-    <div class="cta"><a href="mailto:emariani@unc.edu.ar">emariani@unc.edu.ar</a></div>
-  </div>
-</section>
-
-<footer class="wrap">
-  Grupo de investigación en Biotecnología y Biomateriales — CeTBIO, Facultad de Ciencias Químicas, UNC.
+<footer>
+    Grupo de investigación en Biotecnología y Biomateriales — CeTBIO<br>
+    Facultad de Ciencias Químicas, Universidad Nacional de Córdoba.
 </footer>
 
 </body>
